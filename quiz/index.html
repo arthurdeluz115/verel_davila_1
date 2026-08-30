@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FFFFFF">
+<title>Fábrica de Dólar — Descubra Seu Caminho</title>
+<meta name="description" content="Descubra seu caminho para faturar em dólar vendendo produtos físicos nos Estados Unidos.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
+<link rel="preload" href="https://scripts.converteai.net/53782065-dd54-4ed0-847c-3897f660f267/ab-test/6a3e063319ad0024febe808e/player.js" as="script">
+<link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+<link rel="dns-prefetch" href="https://cdn.converteai.net">
+<link rel="dns-prefetch" href="https://scripts.converteai.net">
+<link rel="dns-prefetch" href="https://images.converteai.net">
+<link rel="dns-prefetch" href="https://license.vturb.com">
+<link rel="preload" as="image" href="tela.jpg" fetchpriority="high">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+
+<style>
+/* ==================== Design tokens ==================== */
+:root{
+  --branco: #FFFFFF;
+  --texto: #6B7280;
+  --titulo: #030712;
+  --verde: #17A34A;
+  --verde-claro: #EAF7EF;
+  --borda: #DBDBDB;
+  --borda-hover: #B9B9B9;
+  --trilho: #E5E7EB;
+  --laranja: #E8620A;
+  --laranja-claro: #FDF0E7;
+  --cinza-toque: #F7F7F7;
+  --raio: 16px;
+  --container: 352px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{
+  -webkit-text-size-adjust:100%;
+  overscroll-behavior-y:contain; /* evita pull-to-refresh acidental no quiz */
+}
+
+html,body{
+  margin:0; padding:0;
+  background:var(--branco);
+  color:var(--titulo);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+body{
+  min-height:100svh; /* svh evita relayout ao esconder/mostrar a barra do navegador */
+  display:flex;
+  flex-direction:column;
+}
+
+button{
+  font-family:inherit;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  -webkit-user-select:none; user-select:none;
+  -webkit-touch-callout:none;
+}
+
+/* ==================== Layout ==================== */
+.wrap{
+  width:100%;
+  max-width:var(--container);
+  margin:0 auto;
+  padding:16px 0 24px;
+  text-align:center;
+  flex:1 1 auto;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+@supports (justify-content: safe center){ .wrap{ justify-content:safe center; } }
+
+.topbar{
+  position:sticky; top:0; z-index:20;
+  background:var(--branco);
+  padding:16px 0 14px;
+}
+.topbar-inner{ width:100%; max-width:var(--container); margin:0 auto; position:relative; }
+.topbar.is-hidden .progress{ visibility:hidden; }
+
+.progress{ width:100%; height:6px; background:var(--trilho); border-radius:999px; overflow:hidden; }
+.progress-fill{ height:100%; width:0%; background:var(--titulo); border-radius:999px; }
+
+.back{
+  position:fixed; top:12px; left:12px; z-index:30;
+  width:40px; height:40px;
+  display:flex; align-items:center; justify-content:center;
+  background:transparent; border:0; padding:0;
+  color:var(--titulo); font-size:24px; line-height:1;
+  cursor:pointer;
+}
+.back[hidden]{ display:none; }
+
+.screen{ display:none; width:100%; }
+.screen.is-active{ display:block; contain:layout style; }
+
+/* ==================== Tipografia ==================== */
+h1,h2{ margin:0; font-weight:700; color:var(--titulo); letter-spacing:-.02em; }
+h1{ font-size:26px; line-height:1.25; }
+h2{ font-size:22px; line-height:1.3; }
+.sub{ margin:12px 0 0; font-size:15px; line-height:1.5; color:var(--texto); }
+.apoio{ margin:8px 0 0; font-size:13px; line-height:1.45; color:var(--texto); }
+.highlight{
+  background:var(--laranja-claro); color:var(--laranja);
+  padding:0 6px; border-radius:6px;
+  box-decoration-break:clone; -webkit-box-decoration-break:clone;
+}
+.highlight--verde{ background:var(--verde-claro); color:var(--verde); }
+
+.img-1x1{
+  width:100%; aspect-ratio:1/1; margin:24px 0;
+  border-radius:var(--raio); background:#F1F1F1; overflow:hidden;
+}
+.img-1x1 img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ==================== Botão principal ==================== */
+.cta{
+  display:flex; align-items:center; justify-content:center;
+  width:100%; height:56px;
+  background:var(--verde); color:#fff;
+  font-size:16px; font-weight:500;
+  border:0; border-radius:var(--raio);
+  cursor:pointer; transition:opacity .12s ease;
+}
+.cta.is-pressed{ opacity:.85; transition:none; }
+@media (hover:hover) and (pointer:fine){ .cta:hover{ opacity:.92; } }
+
+.prova{ margin:16px 0 0; font-size:13px; line-height:1.5; color:var(--texto); }
+.legal{ margin:32px 0 0; font-size:11px; line-height:1.55; color:var(--texto); text-align:left; }
+
+/* ==================== Opções ==================== */
+.options{ margin:28px 0 0; display:grid; grid-template-columns:1fr; gap:12px; }
+.options.cols-2{ grid-template-columns:1fr 1fr; }
+
+.opt{
+  display:flex; align-items:center; justify-content:flex-start; gap:12px;
+  width:100%; padding:18px 16px;
+  background:var(--branco); border:1px solid var(--borda); border-radius:var(--raio);
+  color:var(--titulo); font-size:16px; font-weight:400; line-height:1.35; text-align:left;
+  cursor:pointer;
+  transition:border-color .12s ease, background-color .12s ease;
+}
+.opt.is-pressed{ border-color:var(--borda-hover); background:var(--cinza-toque); transition:none; }
+.opt.is-selected, .opt.is-selected.is-pressed{ border-color:var(--verde); background:var(--verde-claro); }
+@media (hover:hover) and (pointer:fine){ .opt:hover{ border-color:var(--borda-hover); } }
+
+.opt .emoji{ flex:0 0 28px; width:28px; display:flex; align-items:center; justify-content:center; font-size:24px; }
+.opt .letra{
+  flex:0 0 28px; width:28px; height:28px;
+  display:flex; align-items:center; justify-content:center;
+  border:1px solid var(--borda); border-radius:8px; font-size:13px; font-weight:600;
+}
+.opt.is-selected .letra{ border-color:var(--verde); }
+.opt > *{ pointer-events:none; } /* toque sempre chega direto no botão */
+
+.options.cols-2 .opt{ justify-content:center; text-align:center; padding:18px 12px; gap:8px; }
+.options.cols-2 .opt .emoji{ flex:0 0 auto; width:auto; font-size:20px; }
+
+/* ==================== Tela de processamento ==================== */
+.ring{ position:relative; width:160px; height:160px; margin:28px auto 0; }
+.ring svg{ display:block; width:100%; height:100%; transform:rotate(-90deg); overflow:visible; }
+.ring-track{ fill:none; stroke:var(--trilho); stroke-width:8; }
+.ring-fill{
+  fill:none; stroke:var(--laranja); stroke-width:8; stroke-linecap:round;
+  stroke-dasharray:339.292; stroke-dashoffset:339.292; /* 2πr, r=54 */
+}
+.ring-fill.is-running{ animation:anelPreenche var(--dur-proc, 3500ms) linear forwards; }
+@keyframes anelPreenche{ to{ stroke-dashoffset:0; } }
+
+.proc-pct{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-size:34px; font-weight:700; letter-spacing:-.03em; font-variant-numeric:tabular-nums;
+}
+.steps{ margin:32px 0 0; display:flex; flex-direction:column; gap:14px; }
+.step{ display:flex; align-items:center; gap:12px; text-align:left; font-size:15px; color:var(--texto); transition:color .2s ease; }
+.step .mark{
+  flex:0 0 22px; width:22px; height:22px; border-radius:999px;
+  border:1px solid var(--borda);
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; color:transparent;
+  transition:background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+.step.done{ color:var(--titulo); font-weight:500; }
+.step.done .mark{ background:var(--laranja); border-color:var(--laranja); color:#fff; }
+
+/* ==================== Resultado ==================== */
+.timer{ display:flex; align-items:center; justify-content:center; gap:10px; margin:0 0 20px; }
+.timer-box{
+  width:56px; height:56px; border:1px solid var(--borda); border-radius:12px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
+}
+.timer-num{ font-size:20px; font-weight:700; line-height:1; font-variant-numeric:tabular-nums; }
+.timer-lab{ font-size:10px; color:var(--texto); }
+.timer-sep{ font-size:20px; font-weight:700; }
+
+.chart{ margin:16px 0 0; width:100%; border:1px solid var(--borda); border-radius:var(--raio); padding:12px 10px; }
+.chart svg{ display:block; width:100%; height:auto; }
+#areaFill stop{ stop-color:var(--laranja); }
+.chart-30d{ fill:var(--laranja); }
+.chart-line{ stroke:var(--laranja); stroke-width:2.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.chart-foot{ display:flex; justify-content:space-between; align-items:center; margin-top:8px; font-size:11px; color:var(--texto); }
+.chart-foot .destaque{ color:var(--laranja); font-weight:600; }
+
+.bars{ margin:16px 0 0; display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.bar-col{ border:1px solid var(--borda); border-radius:var(--raio); padding:12px 10px; display:flex; flex-direction:column; align-items:center; }
+.bar-pct{ font-size:14px; font-weight:600; margin-bottom:6px; }
+.bar-track{ width:28px; height:60px; background:var(--trilho); border-radius:8px; display:flex; align-items:flex-end; overflow:hidden; }
+.bar-fill{ width:100%; height:100%; background:var(--laranja); transform:scaleY(0); transform-origin:bottom; transition:transform .9s cubic-bezier(.22,.61,.36,1); }
+.bar-cap{ margin-top:10px; font-size:11px; line-height:1.4; color:var(--texto); }
+.bar-cap strong{ display:block; color:var(--titulo); font-weight:600; font-size:12px; }
+
+.destaque-final{
+  margin:14px 0 10px; font-size:13px; line-height:1.35; font-weight:700;
+  text-transform:uppercase; letter-spacing:-.01em;
+}
+
+.screen[data-screen="9"] h2{ font-size:18px; line-height:1.25; }
+.screen[data-screen="9"] .sub{ font-size:13px; margin-top:6px; }
+.screen[data-screen="9"] .chart{ padding:8px 8px 6px; }
+.screen[data-screen="9"] .chart svg{ max-height:130px; }
+.screen[data-screen="9"] .cta{ height:52px; }
+
+/* ==================== VSL ==================== */
+.faixa{
+  width:100%; margin:0 0 20px; padding:8px 0 0;
+  font-size:15px; font-weight:800; line-height:1.5;
+  text-transform:uppercase; letter-spacing:-.01em; text-align:center;
+}
+.faixa .f-vermelho{ color:#D91F1F; }
+.faixa .f-verde{ color:var(--verde); }
+
+.vsl-player{ width:100%; margin:0 0 24px; border-radius:var(--raio); overflow:hidden; background:#000; }
+.vsl-player vturb-smartplayer{ display:block; width:100%; }
+
+/* ==================== Responsivo ==================== */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+}
+
+@media (max-width:380px){
+  .wrap{ padding-left:16px; padding-right:16px; }
+  h1{ font-size:24px; }
+}
+
+/* Telas baixas: compacta o quiz para caber sem rolagem */
+@media (max-height:800px){
+  h2{ font-size:20px; }
+  .apoio{ margin-top:6px; }
+  .options{ margin-top:18px; gap:9px; }
+  .opt{ padding:13px 14px; font-size:15px; }
+  .opt .emoji{ font-size:21px; }
+  .options.cols-2 .opt{ padding:14px 10px; }
+}
+@media (max-height:700px){
+  h2{ font-size:18px; }
+  .sub{ font-size:14px; margin-top:8px; }
+  .apoio{ font-size:12px; margin-top:4px; }
+  .options{ margin-top:12px; gap:7px; }
+  .opt{ padding:10px 12px; font-size:14px; gap:10px; line-height:1.3; }
+  .opt .emoji{ flex-basis:24px; width:24px; font-size:19px; }
+  .opt .letra{ flex-basis:24px; width:24px; height:24px; font-size:12px; }
+  .wrap{ padding-top:8px; padding-bottom:12px; }
+  .topbar{ padding:10px 0 8px; }
+}
+</style>
+</head>
+<body>
+
+<button type="button" class="back" id="btnBack" aria-label="Voltar" hidden>&#8592;</button>
+
+<div class="topbar is-hidden" id="topbar">
+  <div class="topbar-inner">
+    <div class="progress" role="progressbar" aria-label="Progresso do quiz" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap" id="wrap">
+
+  <!-- 0 · Entrada -->
+  <section class="screen is-active" data-screen="0">
+    <h1>Descubra o Caminho Para <span class="highlight highlight--verde">Faturar de US$ 100 a US$ 550 por Dia</span> Vendendo em Dólar</h1>
+    <p class="sub">Sem falar inglês, sem abrir empresa fora do Brasil e sem aparecer.</p>
+    <div class="img-1x1"><img src="tela.jpg" alt="Dashboard de faturamento em dólar" fetchpriority="high" decoding="async" width="352" height="352"></div>
+    <button type="button" class="cta" id="btnStart">COMEÇAR AGORA &rarr;</button>
+    <p class="prova">⚡ Mais de 1476 pessoas já ativaram a estrutura automática em dólar.</p>
+    <p class="legal">Aviso Legal: Não existem garantias de resultados financeiros. Os ganhos variam para cada pessoa e dependem exclusivamente do esforço, dedicação e aplicação correta do método. Este site não é afiliado ao Facebook ou à Meta Platforms, Inc.</p>
+  </section>
+
+  <!-- 1 · Compromisso -->
+  <section class="screen" data-screen="1">
+    <h2><span style="display:block;font-size:28px;margin-bottom:8px;">🎁 PARABÉNS!</span>Você vai ganhar um presente especial ao final desse quiz!</h2>
+    <p class="sub">Se você quer receber o PRESENTE SECRETO conclua as próximas etapas e desbloqueie</p>
+    <p class="sub" style="margin-top:24px;color:var(--titulo);font-weight:600;">Você se compromete a responder esse mini quiz?</p>
+    <div class="options cols-2" data-question="compromisso">
+      <button type="button" class="opt" data-value="Sim"><span class="emoji">✅</span><span>Sim</span></button>
+      <button type="button" class="opt" data-value="Não"><span class="emoji">🚫</span><span>Não</span></button>
+    </div>
+  </section>
+
+  <!-- 2 · Gênero -->
+  <section class="screen" data-screen="2">
+    <h2>Você é?</h2>
+    <div class="options cols-2" data-question="genero">
+      <button type="button" class="opt" data-value="Homem"><span class="emoji">👨</span><span>Homem</span></button>
+      <button type="button" class="opt" data-value="Mulher"><span class="emoji">👸</span><span>Mulher</span></button>
+    </div>
+  </section>
+
+  <!-- 3 · Idade -->
+  <section class="screen" data-screen="3">
+    <h2>Qual Sua Idade?</h2>
+    <div class="options" data-question="idade">
+      <button type="button" class="opt" data-value="18 - 25 anos"><span class="letra">A</span><span>18 - 25 anos</span></button>
+      <button type="button" class="opt" data-value="26 - 35 anos"><span class="letra">B</span><span>26 - 35 anos</span></button>
+      <button type="button" class="opt" data-value="36 - 45 anos"><span class="letra">C</span><span>36 - 45 anos</span></button>
+      <button type="button" class="opt" data-value="46+ anos"><span class="letra">D</span><span>46+ anos</span></button>
+    </div>
+  </section>
+
+  <!-- 4 · Objetivo -->
+  <section class="screen" data-screen="4">
+    <h2>Qual é o seu objetivo principal?</h2>
+    <div class="options" data-question="objetivo">
+      <button type="button" class="opt" data-value="Ter uma renda extra em dólar"><span class="emoji">💵</span><span>Ter uma renda extra em dólar</span></button>
+      <button type="button" class="opt" data-value="Substituir o meu salário atual"><span class="emoji">🔄</span><span>Substituir o meu salário atual</span></button>
+      <button type="button" class="opt" data-value="Sair do CLT e trabalhar por conta"><span class="emoji">🕊️</span><span>Sair do CLT e trabalhar por conta</span></button>
+      <button type="button" class="opt" data-value="Parar de depender do mercado brasileiro"><span class="emoji">🌎</span><span>Parar de depender do mercado brasileiro</span></button>
+      <button type="button" class="opt" data-value="Começar o meu primeiro negócio online"><span class="emoji">📈</span><span>Começar o meu primeiro negócio online</span></button>
+    </div>
+  </section>
+
+  <!-- 5 · Motivação -->
+  <section class="screen" data-screen="5">
+    <h2>O que te MOTIVA a querer faturar em dólar agora?</h2>
+    <p class="apoio">Seja sincero(a), isso vai nos ajudar a personalizar sua estratégia</p>
+    <div class="options" data-question="motivacao">
+      <button type="button" class="opt" data-value="Pagar as dívidas e sair do vermelho"><span class="emoji">🔴</span><span>Pagar as dívidas e sair do vermelho</span></button>
+      <button type="button" class="opt" data-value="Conquistar a independência financeira"><span class="emoji">🔓</span><span>Conquistar a independência financeira</span></button>
+      <button type="button" class="opt" data-value="Realizar um sonho específico"><span class="emoji">⭐</span><span>Realizar um sonho específico</span></button>
+      <button type="button" class="opt" data-value="Ter mais tempo com a família"><span class="emoji">👪</span><span>Ter mais tempo com a família</span></button>
+      <button type="button" class="opt" data-value="Melhorar meu padrão de vida"><span class="emoji">🏡</span><span>Melhorar meu padrão de vida</span></button>
+    </div>
+  </section>
+
+  <!-- 6 · Meta financeira (alimenta o gráfico do resultado) -->
+  <section class="screen" data-screen="6">
+    <h2>Quanto você quer estar faturando por dia daqui a 30 dias?</h2>
+    <p class="apoio">Seja ambicioso(a) mas realista com seu esforço</p>
+    <div class="options" data-question="meta">
+      <button type="button" class="opt" data-value="US$ 67 por dia — 1 venda por dia" data-meta="67"><span class="emoji">🌱</span><span>US$ 67 por dia — 1 venda por dia</span></button>
+      <button type="button" class="opt" data-value="US$ 200 por dia — cerca de 3 vendas" data-meta="200"><span class="emoji">🚀</span><span>US$ 200 por dia — cerca de 3 vendas</span></button>
+      <button type="button" class="opt" data-value="US$ 400 por dia — cerca de 6 vendas" data-meta="400"><span class="emoji">🔥</span><span>US$ 400 por dia — cerca de 6 vendas</span></button>
+      <button type="button" class="opt" data-value="US$ 670 por dia — cerca de 10 vendas" data-meta="670"><span class="emoji">💎</span><span>US$ 670 por dia — cerca de 10 vendas</span></button>
+      <button type="button" class="opt" data-value="Acima de US$ 1.000 por dia" data-meta="1000"><span class="emoji">👑</span><span>Acima de US$ 1.000 por dia</span></button>
+    </div>
+  </section>
+
+  <!-- 7 · Tempo disponível -->
+  <section class="screen" data-screen="7">
+    <h2>Quanto tempo POR DIA você pode dedicar <span class="highlight highlight--verde">à sua estrutura em dólar?</span></h2>
+    <div class="options" data-question="tempo">
+      <button type="button" class="opt" data-value="Entre 10 a 30 minutos — começo rápido"><span class="emoji">⏱️</span><span>Entre 10 a 30 minutos — começo rápido</span></button>
+      <button type="button" class="opt" data-value="Entre 1 a 2 horas — ideal para resultados"><span class="emoji">⏰</span><span>Entre 1 a 2 horas — ideal para resultados</span></button>
+      <button type="button" class="opt" data-value="Entre 2 a 3 horas — ideal para quem quer faturar alto"><span class="emoji">📊</span><span>Entre 2 a 3 horas — ideal para quem quer faturar alto</span></button>
+      <button type="button" class="opt" data-value="Mais de 4 horas — dedicação total"><span class="emoji">💪</span><span>Mais de 4 horas — dedicação total</span></button>
+    </div>
+  </section>
+
+  <!-- 8 · Processamento simulado -->
+  <section class="screen proc" data-screen="8">
+    <h2>Analisando suas respostas</h2>
+    <div class="ring">
+      <svg viewBox="0 0 120 120" aria-hidden="true">
+        <circle class="ring-track" cx="60" cy="60" r="54"/>
+        <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="54"/>
+      </svg>
+      <div class="proc-pct" id="procPct">0%</div>
+    </div>
+    <div class="steps">
+      <div class="step" data-at="33"><span class="mark">✓</span><span>Criando um plano personalizado</span></div>
+      <div class="step" data-at="66"><span class="mark">✓</span><span>Ativando sua Estrutura em Dólar</span></div>
+      <div class="step" data-at="99"><span class="mark">✓</span><span>Criando o seu acesso</span></div>
+    </div>
+  </section>
+
+  <!-- 9 · Resultado -->
+  <section class="screen" data-screen="9">
+    <div class="timer" aria-live="off">
+      <div class="timer-box"><span class="timer-num" id="timerMin">00</span><span class="timer-lab">min</span></div>
+      <span class="timer-sep">:</span>
+      <div class="timer-box"><span class="timer-num" id="timerSec">40</span><span class="timer-lab">seg</span></div>
+    </div>
+
+    <h2>Sua Jornada nos Próximos 30 Dias</h2>
+    <p class="sub">Baseado nas suas respostas, criamos a estratégia perfeita para VOCÊ</p>
+
+    <div class="chart">
+      <svg viewBox="0 0 320 180" role="img" aria-label="Projeção de crescimento em 30 dias">
+        <defs>
+          <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-opacity="0.28"/>
+            <stop offset="100%" stop-opacity="0.02"/>
+          </linearGradient>
+        </defs>
+        <g font-size="9" fill="#6B7280" font-family="Inter, sans-serif">
+          <text x="2" y="18">100</text>
+          <text x="6" y="53">75</text>
+          <text x="6" y="88">50</text>
+          <text x="6" y="123">25</text>
+          <text x="12" y="158">0</text>
+        </g>
+        <g stroke="#E5E7EB" stroke-width="1">
+          <line x1="30" y1="15" x2="315" y2="15"/>
+          <line x1="30" y1="50" x2="315" y2="50"/>
+          <line x1="30" y1="85" x2="315" y2="85"/>
+          <line x1="30" y1="120" x2="315" y2="120"/>
+          <line x1="30" y1="155" x2="315" y2="155"/>
+        </g>
+        <path d="M34,152 C90,148 120,138 152,116 C186,92 214,60 250,36 C272,22 292,17 312,15 L312,155 L34,155 Z" fill="url(#areaFill)"/>
+        <path class="chart-line" d="M34,152 C90,148 120,138 152,116 C186,92 214,60 250,36 C272,22 292,17 312,15"/>
+        <text class="chart-30d" x="313" y="10" text-anchor="end" font-size="10" font-weight="600" font-family="Inter, sans-serif">30 dias</text>
+        <text x="34" y="170" font-size="10" font-weight="600" fill="#6B7280" font-family="Inter, sans-serif">HOJE</text>
+      </svg>
+      <div class="chart-foot">
+        <span>US$ 0 por dia</span>
+        <span class="destaque" id="chartMeta">US$ 670/dia</span>
+      </div>
+    </div>
+
+    <div class="bars">
+      <div class="bar-col">
+        <span class="bar-pct">10%</span>
+        <div class="bar-track"><div class="bar-fill" id="barHoje"></div></div>
+        <span class="bar-cap"><strong>Onde você está hoje</strong>US$ 0 por dia</span>
+      </div>
+      <div class="bar-col">
+        <span class="bar-pct">100%</span>
+        <div class="bar-track"><div class="bar-fill" id="barFuturo"></div></div>
+        <span class="bar-cap"><strong>Onde você vai estar daqui a 30 dias!</strong><span id="barMeta">US$ 670 por dia</span></span>
+      </div>
+    </div>
+
+    <p class="destaque-final">Para desbloquear seu acesso à Estrutura Automática em Dólar clique no botão abaixo e assista o tutorial de acesso</p>
+    <button type="button" class="cta" id="btnUnlock">DESBLOQUEAR ACESSO</button>
+  </section>
+
+  <!-- 10 · VSL -->
+  <section class="screen" data-screen="10">
+    <div class="faixa">
+      Brasileiros <span class="f-vermelho">estão copiando</span> este sistema americano para receber de <span class="f-verde">$100</span> a <span class="f-verde">$550</span> dolares todos os dias
+    </div>
+    <div class="vsl-player">
+      <vturb-smartplayer id="ab-6a3e063319ad0024febe808e" style="display:block;margin:0 auto;width:100%;max-width:400px;">
+        <div class="vturb-player-placeholder" style="position:relative;width:100%;padding:177.77777777777777% 0 0;z-index:0;background-color:black;"></div>
+      </vturb-smartplayer>
+    </div>
+  </section>
+
+</main>
+
+<script>
+/* ============================================================
+ * CONFIG — ajuste antes de publicar
+ * ============================================================ */
+const CONFIG = {
+  checkoutUrl: 'https://pay.hub.la/COLE_O_LINK_AQUI',
+  passAnswersToCheckout: true,
+  timerSeconds: 40,
+  processingMs: 3500,
+  disableTracking: false,   // corta GTM/GA4 para diagnóstico
+  vslPlayerUrl: 'https://scripts.converteai.net/53782065-dd54-4ed0-847c-3897f660f267/ab-test/6a3e063319ad0024febe808e/player.js',
+  debug: false
+};
+
+const TOTAL_PERGUNTAS = 7;
+const PRIMEIRA_PERGUNTA = 1;
+const ULTIMA_PERGUNTA = 7;
+
+/* ============================================================
+ * Estado — só em memória, nada de localStorage
+ * ============================================================ */
+const estado = {
+  tela: 0,
+  respostas: {},
+  meta: 670,
+  iniciou: false,
+  timerId: null,
+  procId: null,
+  procTimeout: null,
+  prefetchId: null
+};
+
+/* ============================================================
+ * Tracking — Meta Pixel, GTM, GA4
+ * ============================================================ */
+function track(evento, dados){
+  dados = dados || {};
+  if (CONFIG.debug) console.log('[track]', evento, dados);
+  if (CONFIG.disableTracking) return;
+  try{ if (Array.isArray(window.dataLayer)) window.dataLayer.push(Object.assign({ event: evento }, dados)); }catch(e){}
+  try{ if (typeof window.gtag === 'function') window.gtag('event', evento, dados); }catch(e){}
+}
+// Dispara depois do repaint, para nunca competir com a troca de tela.
+function trackDepois(evento, dados){ setTimeout(() => track(evento, dados), 300); }
+
+/* ============================================================
+ * Elementos
+ * ============================================================ */
+const wrap = document.getElementById('wrap');
+const topbar = document.getElementById('topbar');
+const progressBar = document.getElementById('progressBar');
+const progressFill = document.getElementById('progressFill');
+const btnBack = document.getElementById('btnBack');
+const btnStart = document.getElementById('btnStart');
+const btnUnlock = document.getElementById('btnUnlock');
+const procPct = document.getElementById('procPct');
+const ringFill = document.getElementById('ringFill');
+const chartMetaEl = document.getElementById('chartMeta');
+const barMetaEl = document.getElementById('barMeta');
+const barHoje = document.getElementById('barHoje');
+const barFuturo = document.getElementById('barFuturo');
+const elMin = document.getElementById('timerMin');
+const elSec = document.getElementById('timerSec');
+
+const telasPorIndice = new Map();
+document.querySelectorAll('.screen').forEach(sec => telasPorIndice.set(Number(sec.dataset.screen), sec));
+let telaAtiva = document.querySelector('.screen.is-active');
+
+const passos = Array.from(document.querySelectorAll('.step'));
+const passosAt = passos.map(p => Number(p.dataset.at));
+
+let ultimoPct = -1;
+
+/* ============================================================
+ * Navegação entre telas
+ * ============================================================ */
+function irPara(indice){
+  const nova = telasPorIndice.get(indice);
+  if (!nova) return;
+
+  if (telaAtiva !== nova){
+    if (telaAtiva) telaAtiva.classList.remove('is-active');
+    nova.classList.add('is-active');
+    telaAtiva = nova;
+  }
+  estado.tela = indice;
+  limparPressionado();
+
+  if (indice !== 8) pararProcessamento();
+  if (indice !== 9){ pararTimer(); cancelarPrefetchVSL(); }
+
+  atualizarProgresso(indice);
+  btnBack.hidden = (indice === 0 || indice === 8 || indice === 10);
+  if (window.scrollY > 0) window.scrollTo(0, 0);
+
+  if (indice === 8){
+    iniciarProcessamento();
+  } else if (indice === 9){
+    montarResultado();
+    agendarPrefetchVSL();
+  } else if (indice === 10){
+    carregarPlayerVSL();
+    trackDepois('VSLView', {});
+  }
+}
+
+function atualizarProgresso(indice){
+  if (indice === 0){ topbar.classList.add('is-hidden'); definirProgresso(0); return; }
+  topbar.classList.remove('is-hidden');
+  if (indice >= 8){ definirProgresso(100); return; }
+  const passo = Math.min(Math.max(indice - PRIMEIRA_PERGUNTA + 1, 0), TOTAL_PERGUNTAS);
+  definirProgresso(Math.round((passo / TOTAL_PERGUNTAS) * 100));
+}
+
+function definirProgresso(pct){
+  if (pct === ultimoPct) return;
+  ultimoPct = pct;
+  progressFill.style.width = pct + '%';
+  progressBar.setAttribute('aria-valuenow', String(pct));
+}
+
+/* ============================================================
+ * Seleção de opções
+ * ============================================================ */
+function selecionarOpcao(botao){
+  const grupo = botao.parentElement;
+  const pergunta = grupo.dataset.question;
+
+  const anterior = grupo.querySelector('.opt.is-selected');
+  if (anterior && anterior !== botao) anterior.classList.remove('is-selected');
+  botao.classList.add('is-selected');
+
+  const valor = botao.dataset.value;
+  estado.respostas[pergunta] = valor;
+  if (botao.dataset.meta) estado.meta = parseInt(botao.dataset.meta, 10);
+
+  irPara(estado.tela + 1); // navegação primeiro, tracking depois
+  trackDepois('QuizAnswer', { pergunta, resposta: valor });
+}
+
+function restaurarSelecao(indice){
+  const tela = telasPorIndice.get(indice);
+  const grupo = tela && tela.querySelector('.options');
+  if (!grupo) return;
+  const salvo = estado.respostas[grupo.dataset.question];
+  grupo.querySelectorAll('.opt').forEach(o => o.classList.toggle('is-selected', !!salvo && o.dataset.value === salvo));
+}
+
+function voltar(){
+  if (estado.tela <= 0) return;
+  let destino = estado.tela - 1;
+  if (estado.tela === 9) destino = ULTIMA_PERGUNTA;
+  if (estado.tela === 10) destino = 9;
+  pararProcessamento();
+  restaurarSelecao(destino);
+  irPara(destino);
+}
+
+/* ============================================================
+ * Entrada de toque/mouse
+ * O click sintetizado do Android é sempre descartado depois de um
+ * toque válido, para nunca disparar duas respostas em sequência.
+ * ============================================================ */
+const SELETOR_ALVOS = '.opt, .cta, .back';
+let ultimaAtivacao = { alvo: null, t: -1e9 };
+
+function ativar(alvo){
+  if (alvo !== btnBack && (!telaAtiva || !telaAtiva.contains(alvo))) return;
+  const agora = performance.now();
+  if (alvo === ultimaAtivacao.alvo && agora - ultimaAtivacao.t < 700) return;
+  ultimaAtivacao = { alvo, t: agora };
+
+  try{
+    if (alvo.classList.contains('opt')){ selecionarOpcao(alvo); return; }
+    if (alvo === btnStart){
+      irPara(1);
+      if (!estado.iniciou){ estado.iniciou = true; trackDepois('QuizStart', {}); }
+      return;
+    }
+    if (alvo === btnUnlock){ irPara(10); return; }
+    if (alvo === btnBack){ voltar(); return; }
+  }catch(e){
+    if (CONFIG.debug) console.error('[ativar]', e);
+  }
+}
+
+let pressionado = null;
+let toqueOrigem = null;
+let suprimirProximoClique = false;
+let idSupressao = null;
+
+function limparPressionado(){
+  if (pressionado){ pressionado.classList.remove('is-pressed'); pressionado = null; }
+}
+function suprimirClique(){
+  suprimirProximoClique = true;
+  clearTimeout(idSupressao);
+  idSupressao = setTimeout(() => { suprimirProximoClique = false; }, 2000);
+}
+
+document.addEventListener('pointerdown', ev => {
+  const alvo = ev.target.closest?.(SELETOR_ALVOS);
+  if (!alvo) return;
+  limparPressionado();
+  if (!alvo.classList.contains('back')){ pressionado = alvo; alvo.classList.add('is-pressed'); }
+  toqueOrigem = { alvo, x: ev.clientX, y: ev.clientY };
+}, { passive: true });
+
+document.addEventListener('pointerup', ev => {
+  const origem = toqueOrigem;
+  toqueOrigem = null;
+  limparPressionado();
+  if (!origem) return;
+  if (ev.pointerType === 'mouse') return;
+
+  suprimirClique();
+  if (Math.abs(ev.clientX - origem.x) > 12 || Math.abs(ev.clientY - origem.y) > 12) return; // gesto, não toque
+
+  const alvo = ev.target.closest?.(SELETOR_ALVOS);
+  if (alvo !== origem.alvo) return;
+  ativar(origem.alvo);
+}, { passive: true });
+
+document.addEventListener('pointercancel', () => {
+  toqueOrigem = null;
+  limparPressionado();
+}, { passive: true });
+
+document.addEventListener('click', ev => {
+  if (suprimirProximoClique){ suprimirProximoClique = false; clearTimeout(idSupressao); return; }
+  const alvo = ev.target.closest?.(SELETOR_ALVOS);
+  if (alvo) ativar(alvo);
+});
+
+/* ============================================================
+ * Tela 8 — Processamento simulado
+ * ============================================================ */
+function pararProcessamento(){
+  if (estado.procId){ cancelAnimationFrame(estado.procId); estado.procId = null; }
+  if (estado.procTimeout){ clearTimeout(estado.procTimeout); estado.procTimeout = null; }
+  ringFill.classList.remove('is-running');
+}
+
+function iniciarProcessamento(){
+  pararProcessamento();
+  trackDepois('QuizProcessing', {});
+  passos.forEach(p => p.classList.remove('done'));
+  procPct.textContent = '0%';
+
+  ringFill.classList.remove('is-running');
+  ringFill.style.setProperty('--dur-proc', CONFIG.processingMs + 'ms');
+  void ringFill.offsetWidth; // força reflow para reiniciar a animação CSS
+  ringFill.classList.add('is-running');
+
+  estado.procTimeout = setTimeout(() => {
+    estado.procTimeout = null;
+    procPct.textContent = '100%';
+    passos.forEach(p => p.classList.add('done'));
+    estado.procTimeout = setTimeout(() => {
+      estado.procTimeout = null;
+      irPara(9);
+      trackDepois('QuizComplete', { meta: estado.meta });
+    }, 350);
+  }, CONFIG.processingMs);
+
+  const inicio = performance.now();
+  let ultimaEscrita = -1e9;
+  function quadro(agora){
+    if (agora - ultimaEscrita >= 70){
+      ultimaEscrita = agora;
+      const pct = Math.min(100, Math.round(((agora - inicio) / CONFIG.processingMs) * 100));
+      procPct.textContent = pct + '%';
+      passos.forEach((p, i) => { if (pct >= passosAt[i]) p.classList.add('done'); });
+      if (pct >= 100){ estado.procId = null; return; }
+    }
+    estado.procId = requestAnimationFrame(quadro);
+  }
+  estado.procId = requestAnimationFrame(quadro);
+}
+
+/* ============================================================
+ * Tela 9 — Resultado
+ * ============================================================ */
+function formatarMeta(v){ return 'US$ ' + v.toLocaleString('pt-BR'); }
+
+function montarResultado(){
+  chartMetaEl.textContent = formatarMeta(estado.meta) + '/dia';
+  barMetaEl.textContent = formatarMeta(estado.meta) + ' por dia';
+
+  barHoje.style.transform = 'scaleY(0)';
+  barFuturo.style.transform = 'scaleY(0)';
+  void barHoje.offsetHeight; // fixa o estado inicial antes de animar
+
+  barHoje.style.transform = 'scaleY(0.1)';
+  barFuturo.style.transform = 'scaleY(1)';
+
+  iniciarTimer();
+}
+
+function pararTimer(){ if (estado.timerId){ clearInterval(estado.timerId); estado.timerId = null; } }
+
+function iniciarTimer(){
+  pararTimer();
+  const fim = Date.now() + CONFIG.timerSeconds * 1000;
+  let ultimoRestante = -1;
+
+  function pintar(restante){
+    if (restante === ultimoRestante) return;
+    ultimoRestante = restante;
+    elMin.textContent = String(Math.floor(restante / 60)).padStart(2, '0');
+    elSec.textContent = String(restante % 60).padStart(2, '0');
+  }
+  pintar(CONFIG.timerSeconds);
+
+  estado.timerId = setInterval(() => {
+    const restante = Math.max(0, Math.round((fim - Date.now()) / 1000));
+    pintar(restante);
+    if (restante === 0) pararTimer();
+  }, 250);
+}
+
+/* ============================================================
+ * Player da VSL (VTurb / ConverteAI)
+ * ============================================================ */
+let playerVSLCarregado = false;
+let playerVSLPrefetch = false;
+
+function agendarPrefetchVSL(){
+  clearTimeout(estado.prefetchId);
+  estado.prefetchId = setTimeout(prefetchPlayerVSL, 1500);
+}
+function cancelarPrefetchVSL(){ clearTimeout(estado.prefetchId); estado.prefetchId = null; }
+
+function prefetchPlayerVSL(){
+  if (playerVSLPrefetch || playerVSLCarregado) return;
+  playerVSLPrefetch = true;
+  const l = document.createElement('link');
+  l.rel = 'preload'; l.as = 'script'; l.href = CONFIG.vslPlayerUrl; l.crossOrigin = 'anonymous';
+  document.head.appendChild(l);
+}
+
+function carregarPlayerVSL(){
+  if (playerVSLCarregado) return;
+  playerVSLCarregado = true;
+  const s = document.createElement('script');
+  s.src = CONFIG.vslPlayerUrl; s.async = true;
+  document.head.appendChild(s);
+}
+
+/* ============================================================
+ * Checkout — preserva utm_*, fbclid, gclid e as respostas do quiz
+ * ============================================================ */
+function montarUrlCheckout(){
+  let url;
+  try{ url = new URL(CONFIG.checkoutUrl); } catch(e){ return CONFIG.checkoutUrl; }
+
+  new URLSearchParams(window.location.search).forEach((valor, chave) => {
+    const k = chave.toLowerCase();
+    if (k.startsWith('utm_') || k === 'fbclid' || k === 'gclid') url.searchParams.set(chave, valor);
+  });
+
+  if (CONFIG.passAnswersToCheckout){
+    Object.entries(estado.respostas).forEach(([chave, valor]) => url.searchParams.set('q_' + chave, valor));
+    url.searchParams.set('q_meta_valor', String(estado.meta));
+  }
+  return url.toString();
+}
+
+function irParaCheckout(){
+  track('CheckoutClick', { meta: estado.meta }); // síncrono: precisa sair antes da navegação
+  window.location.href = montarUrlCheckout();
+}
+window.irParaCheckout = irParaCheckout;
+
+/* ============================================================
+ * Boot
+ * ============================================================ */
+irPara(0);
+trackDepois('QuizPageView', {});
+</script>
+
+</body>
+</html>
