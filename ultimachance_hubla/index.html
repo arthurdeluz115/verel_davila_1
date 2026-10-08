@@ -180,31 +180,108 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 					<vturb-smartplayer id="vid-6ab80272180de8b015367183" style="display: block; margin: 0 auto; width: 100%; "><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 56.25% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/53782065-dd54-4ed0-847c-3897f660f267/players/6ab80272180de8b015367183/v4/player.js", s.async=!0,document.head.appendChild(s); </script>				</div>
 		<div class="elementor-element elementor-element-cbbbd1d e-con e-atomic-element e-div-block-base mostrar-conteudo " data-id="cbbbd1d" data-element_type="e-div-block" data-e-type="e-div-block" data-interaction-id="cbbbd1d">
     		<div class="elementor-element elementor-element-14ca154 elementor-widget elementor-widget-html" data-id="14ca154" data-element_type="widget" data-e-type="widget" data-widget_type="html.default">
-					<!-- 1. Botão aceitar downsell (slug da oferta: j071xbd) -->
+					<!-- Botões do downsell (Hubla). Repassam TODA a query string (utm_*, fbclid, src, sck e o que a Hubla mandar) -->
 <div style="text-align:center">
-<button
-  id="ephra-downsell-trigger-j071xbd"
-  data-offer-slug="j071xbd"
-  data-downsell-trigger="true"
-  data-next-url="https://app.ephra.io/obrigado-estatico"
-  data-upsell-url="https://app.ephra.io/obrigado-estatico"
-  data-downsell-url="https://app.ephra.io/obrigado-estatico"
-  onclick="window.location.href='https://pay.hub.la/zGwvtHDrrX7JssmVngTY/upsell';"
-  style="background: linear-gradient(to bottom, #ffdb00 0%, #d4a300 100%);padding:16px 24px;cursor:pointer;color:#000000; font-family: sans-serif; font-weight:700;border-radius:24px; border: 0px;font-size:18px; margin-top: 20px;"
->ACEITAR DESCONTO DE R$150,00</button>
+  <button type="button" id="btn-aceitar-downsell" style="background:linear-gradient(to bottom,#ffdb00 0%,#d4a300 100%);padding:16px 24px;cursor:pointer;color:#000000;font-family:sans-serif;font-weight:700;border-radius:24px;border:0;font-size:18px;margin-top:20px;">ACEITAR DESCONTO DE R$150,00</button>
 
-<!-- 2. Botão recusar -->
-<button
-  id="ephra-downsell-cancel-trigger-j071xbd"
-  data-downsell-cancel="true"
-  data-decline-url="https://app.ephra.io/obrigado-estatico"
-  data-downsell-url="https://app.ephra.io/obrigado-estatico"
-  style="margin-top:1rem;cursor:pointer;font-size:12px;text-decoration:underline;font-family: sans-serif;background:none;border:none;color: rgba(255,255,255, 0.8); display: block; margin: 12px auto 0px auto; overflow-wrap: break-word; padding: 8px 0px"
->Não quero desconto</button>
+  <button type="button" id="btn-recusar-downsell" style="display:block;margin:12px auto 0;padding:8px 0;cursor:pointer;font-size:12px;text-decoration:underline;font-family:sans-serif;background:none;border:none;color:rgba(255,255,255,.8);overflow-wrap:break-word;">Não quero desconto</button>
 </div>
 
-<!-- 3. Script de upsell (carrega no final pra não bloquear o load) -->
-<script src="https://app.ephra.io/upsell-handler.js"></script>
+<!-- Popup de agradecimento (abre ao recusar) -->
+<div id="popup-obrigado" role="dialog" aria-modal="true" aria-labelledby="popup-obrigado-titulo" hidden>
+  <div class="po-caixa">
+    <div class="po-icone" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+    </div>
+    <h3 id="popup-obrigado-titulo">Obrigado pela sua compra!</h3>
+    <p>As informações de acesso foram enviadas para o seu e-mail. Confira também a caixa de spam e promoções.</p>
+    <button type="button" id="popup-obrigado-fechar">Entendi</button>
+  </div>
+</div>
+
+<style>
+#popup-obrigado{
+  position:fixed; inset:0; z-index:99999;
+  display:flex; align-items:center; justify-content:center;
+  padding:16px;
+  background:rgba(0,0,0,.75);
+  -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
+  opacity:0; transition:opacity .3s ease;
+}
+#popup-obrigado[hidden]{ display:none; }
+#popup-obrigado.visivel{ opacity:1; }
+#popup-obrigado .po-caixa{
+  width:100%; max-width:380px;
+  padding:28px 24px 24px;
+  border-radius:20px;
+  background:#111111;
+  border:1px solid rgba(229,193,88,.4);
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  text-align:center;
+  font-family:Montserrat,Helvetica,sans-serif;
+  color:#dddddd;
+  transform:scale(.94); transition:transform .3s ease;
+}
+#popup-obrigado.visivel .po-caixa{ transform:scale(1); }
+#popup-obrigado .po-icone{
+  width:56px; height:56px; margin:0 auto 16px;
+  border-radius:50%;
+  background:linear-gradient(to bottom,#ffdb00 0%,#d4a300 100%);
+  display:flex; align-items:center; justify-content:center;
+}
+#popup-obrigado .po-icone svg{ width:28px; height:28px; display:block; }
+#popup-obrigado h3{
+  margin:0 0 10px;
+  font-size:22px; line-height:1.25; font-weight:700;
+  color:#E5C158;
+}
+#popup-obrigado p{
+  margin:0 0 20px;
+  font-size:15px; line-height:1.5;
+}
+#popup-obrigado-fechar{
+  padding:12px 28px;
+  border:0; border-radius:24px;
+  background:linear-gradient(to bottom,#ffdb00 0%,#d4a300 100%);
+  color:#000; font-family:sans-serif; font-weight:700; font-size:16px;
+  cursor:pointer;
+}
+</style>
+
+<script>
+(function(){
+  var URL_ACEITAR = 'https://pay.hub.la/zGwvtHDrrX7JssmVngTY/upsell';
+
+  function comParametros(destino){
+    var url;
+    try { url = new URL(destino, location.href); } catch(e){ return destino; }
+    new URLSearchParams(location.search).forEach(function(valor, chave){
+      if (!url.searchParams.has(chave)) url.searchParams.set(chave, valor);
+    });
+    return url.toString();
+  }
+
+  document.getElementById('btn-aceitar-downsell').addEventListener('click', function(){
+    location.href = comParametros(URL_ACEITAR);
+  });
+
+  var popup = document.getElementById('popup-obrigado');
+  function abrirPopup(){
+    popup.hidden = false;
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ popup.classList.add('visivel'); }); });
+    document.getElementById('popup-obrigado-fechar').focus();
+  }
+  function fecharPopup(){
+    popup.classList.remove('visivel');
+    setTimeout(function(){ popup.hidden = true; }, 300);
+  }
+
+  document.getElementById('btn-recusar-downsell').addEventListener('click', abrirPopup);
+  document.getElementById('popup-obrigado-fechar').addEventListener('click', fecharPopup);
+  popup.addEventListener('click', function(e){ if (e.target === popup) fecharPopup(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !popup.hidden) fecharPopup(); });
+})();
+</script>
 
 
 
